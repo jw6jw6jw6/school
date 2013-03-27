@@ -1,26 +1,54 @@
 package jw6jw6jw6.school.main;
 
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import static org.lwjgl.opengl.GL11.*;
 
 public class Main
 {
+	private static Game game = new Asteroids();
+	public static boolean running = true;
+	
 	public static void main(String args[])
 	{
 		initDisplay();
 		initGL();
 		init();
-		while(!Display.isCloseRequested())
+		while(!Display.isCloseRequested() && running)
 		{
 			glClear(GL_COLOR_BUFFER_BIT);
 			glLoadIdentity();
 			
+			if(Keyboard.isKeyDown(Keyboard.KEY_ESCAPE))
+				running = false;
 			//game calculate
 			//game render
+			game.runTick();
+			game.render();
+			/*if(Keyboard.isKeyDown(Keyboard.KEY_SPACE))
+			{
+			glColor3f(2f,0,0);
+			glBegin(GL_QUADS);
+			glVertex2f(15,47);
+			glVertex2f(15,43);
+			glVertex2f(19,43);
+			glVertex2f(19,47);
+			glEnd();
+			}
+			if(Keyboard.isKeyDown(Keyboard.KEY_X))
+			{
+			glColor3f(0.5f,0.5f,1.0f);
+			glBegin(GL_QUADS);
+			glVertex2f(100,100);
+			glVertex2f(100+200,100);
+			glVertex2f(100+200,100+200);
+			glVertex2f(100,100+200);
+			glEnd();
+			}*/
 			
 			Display.update();
-			Display.sync(60);
+			Display.sync(game.getFrameRate());
 		}
 		exit();
 	}
@@ -29,9 +57,9 @@ public class Main
 	{
 		try 
 		{
-			Display.setDisplayMode(new DisplayMode(800,600));
+			Display.setDisplayMode(new DisplayMode(game.getSizeWidth(),game.getSizeHeight()));
 			Display.create();
-			Display.setVSyncEnabled(true);
+			Display.setVSyncEnabled(game.getVSync());
 		}
 		catch(Exception e)
 		{
@@ -52,10 +80,12 @@ public class Main
 	private static void init()
 	{
 		//init game
+		game.init();
 	}
 
 	private static void exit()
 	{
+		game.exit();
 		Display.destroy();
 	}
 
