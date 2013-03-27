@@ -13,6 +13,7 @@ public class Bullet extends GameObject
 		super(ship.getX(), ship.getY());
 		this.direction = ship.getDirection();
 		maxSpeed = ship.getmaxSpeed() +1;
+//		maxSpeed = .3f;
 	}
 	
 	public void runTick()
