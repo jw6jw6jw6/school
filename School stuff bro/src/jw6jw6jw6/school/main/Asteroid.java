@@ -1,7 +1,7 @@
 package jw6jw6jw6.school.main;
 
 import java.util.Random;
-import static org.lwjgl.opengl.GL11.GL_QUADS;
+import static org.lwjgl.opengl.GL11.GL_TRIANGLES;
 import static org.lwjgl.opengl.GL11.glBegin;
 import static org.lwjgl.opengl.GL11.glColor3f;
 import static org.lwjgl.opengl.GL11.glEnd;
@@ -47,13 +47,14 @@ public class Asteroid extends GameObject
 		{
 			glColor3f(1,0,0);
 			glTranslatef(x,y,0);
-			glBegin(GL_QUADS);
+			glBegin(GL_TRIANGLES);
 			{
-				glVertex3f(-2,2,0);
-				glVertex3f(-2,-2,0);
-				glVertex3f(2,-2,0);
-				glVertex3f(2,2,0);
-				
+				glColor3f(.5f,.5f,0);
+				glVertex3f(-10,10,0);
+//				glColor3f(0,0,1);
+				glVertex3f(10,0,0);
+//				glColor3f(1,0,0);
+				glVertex3f(-5,0,0);
 			}
 			glEnd();
 		}
