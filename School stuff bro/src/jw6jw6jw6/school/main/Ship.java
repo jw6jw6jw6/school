@@ -12,6 +12,11 @@ public class Ship extends GameObject
 		super(x, y);
 	}
 	
+	public float getmaxSpeed()
+	{
+		return maxSpeed;
+	}
+	
 	private float velX = 0, velY = 0;
 	private float direction = 0;
 	private float speedIncrement = .3f;
@@ -88,16 +93,22 @@ public class Ship extends GameObject
 		glPushMatrix();
 		{
 			glTranslatef(x, y, 0);
-			glColor3f(0.5f,0.5f,1.0f);
+			glColor3f(.1f,1,0);
 			glRotatef(direction, 0, 0, 1);
 			glBegin(GL_TRIANGLES);
 			{
+				glColor3f(1,0,0);
 				glVertex3f(-10,10,0);
+				glColor3f(0,0,1);
 				glVertex3f(10,0,0);
+				glColor3f(1,0,0);
 				glVertex3f(-5,0,0);
 				
+				glColor3f(1,0,0);
 				glVertex3f(-10,-10,0);
+				glColor3f(0,0,1);
 				glVertex3f(10,0,0);
+				glColor3f(1,0,0);
 				glVertex3f(-5,0,0);	
 			}
 			glEnd();

@@ -1,5 +1,7 @@
 package jw6jw6jw6.school.main;
 
+import java.util.Iterator;
+
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 
@@ -19,8 +21,12 @@ public class Asteroids extends Game
 		super.runTick();
 	}
 	
-	public void shoot()
+	public void render()
 	{
-		
+		Iterator<GameObject> iterator = objects.iterator();
+		GameObject object = iterator.next();
+		while(iterator.hasNext())
+			iterator.next().render();
+		object.render();
 	}
 }

@@ -1,7 +1,11 @@
 package jw6jw6jw6.school.main;
 
-public class Asteroid
+public class Asteroid extends GameObject
 {
-	static int health = 100;
-//	size
+	public Asteroid(float x, float y)
+	{
+		super(x, y);
+	}
+	
+	
 }
