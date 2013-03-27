@@ -1,6 +1,8 @@
-package jw6jw6jw6.school.main;
+package jw6jw6jw6.school.asteroids;
 
 import java.util.Random;
+
+import jw6jw6jw6.school.main.GameObject;
 import static org.lwjgl.opengl.GL11.GL_TRIANGLES;
 import static org.lwjgl.opengl.GL11.glBegin;
 import static org.lwjgl.opengl.GL11.glColor3f;

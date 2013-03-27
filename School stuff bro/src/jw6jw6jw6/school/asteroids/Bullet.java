@@ -1,5 +1,6 @@
-package jw6jw6jw6.school.main;
+package jw6jw6jw6.school.asteroids;
 import static org.lwjgl.opengl.GL11.*;
+import jw6jw6jw6.school.main.GameObject;
 
 import org.lwjgl.opengl.Display;
 

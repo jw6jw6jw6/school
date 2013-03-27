@@ -1,5 +1,7 @@
 package jw6jw6jw6.school.main;
 
+import jw6jw6jw6.school.asteroids.Asteroids;
+
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;

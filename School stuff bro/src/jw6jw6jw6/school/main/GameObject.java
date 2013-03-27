@@ -28,4 +28,14 @@ public abstract class GameObject
 	{
 		return y;
 	}
+	
+	public void setUnload(boolean unload)
+	{
+		shouldBeUnloaded = unload;
+	}
+	
+	public boolean getUnload()
+	{
+		return shouldBeUnloaded;
+	}
 }
