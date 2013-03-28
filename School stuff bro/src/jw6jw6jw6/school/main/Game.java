@@ -7,7 +7,7 @@ public abstract class Game
 {
 	public ArrayList<GameObject> objects = new ArrayList<GameObject>();
 	
-	public void runTick()
+	public void runTick(long time)
 	{
 		Iterator<GameObject> iterator = objects.iterator();
 		while(iterator.hasNext())
@@ -19,7 +19,7 @@ public abstract class Game
 				continue;
 			}
 			
-			object.runTick();
+			object.runTick(time);
 		}
 	}
 	

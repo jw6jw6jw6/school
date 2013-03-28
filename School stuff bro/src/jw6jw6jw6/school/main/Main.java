@@ -11,6 +11,7 @@ public class Main
 {
 	private static Game game = new Asteroids();
 	public static boolean running = true;
+	private static long lastSystemTime = System.currentTimeMillis();
 	
 	public static void main(String args[])
 	{
@@ -22,11 +23,13 @@ public class Main
 			glClear(GL_COLOR_BUFFER_BIT);
 			glLoadIdentity();
 			
+			long currentTime = System.currentTimeMillis();
+			
 			if(Keyboard.isKeyDown(Keyboard.KEY_ESCAPE))
 				running = false;
 			//game calculate
 			//game render
-			game.runTick();
+			game.runTick(currentTime-lastSystemTime);
 			game.render();
 			/*if(Keyboard.isKeyDown(Keyboard.KEY_SPACE))
 			{
@@ -48,6 +51,8 @@ public class Main
 			glVertex2f(100,100+200);
 			glEnd();
 			}*/
+			
+			lastSystemTime = currentTime;
 			
 			Display.update();
 			Display.sync(game.getFrameRate());

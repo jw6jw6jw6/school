@@ -23,7 +23,7 @@ public class Ship extends GameObject
 	private float speedIncrement = .3f;
 	private float maxSpeed = 4f;
 	
-	public void runTick()
+	public void runTick(long time)
 	{
 		if(Keyboard.isKeyDown(Keyboard.KEY_W))
 		{
@@ -63,7 +63,7 @@ public class Ship extends GameObject
 //			else
 //				angle -=1;
 //			System.out.println(angle);
-			direction += 10f;
+			direction += 5f;
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_D))
 		{
@@ -72,7 +72,7 @@ public class Ship extends GameObject
 //			else
 //				direction +=1;
 //			System.out.println(direction);
-			direction -= 10f;
+			direction -= 5f;
 		}
 		
 		x += velX;

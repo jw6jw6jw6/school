@@ -27,7 +27,7 @@ public class Asteroid extends GameObject
 		maxSpeed = 3f +1;
 	}
 	
-	public void runTick()
+	public void runTick(long time)
 	{
 		x += maxSpeed*Math.cos(Math.toRadians(direction));
 		y += maxSpeed*Math.sin(Math.toRadians(direction));

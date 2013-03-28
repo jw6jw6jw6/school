@@ -15,7 +15,7 @@ public abstract class GameObject
 	{
 	}
 	
-	public void runTick()
+	public void runTick(long time)
 	{
 	}
 	

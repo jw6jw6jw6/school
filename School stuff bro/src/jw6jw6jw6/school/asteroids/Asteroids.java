@@ -5,14 +5,19 @@ import java.util.Iterator;
 
 import jw6jw6jw6.school.main.Game;
 import jw6jw6jw6.school.main.GameObject;
+import jw6jw6jw6.school.main.Main;
 import jw6jw6jw6.school.main.Physics;
+import jw6jw6jw6.school.main.uni;
+import java.util.Random;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 
 public class Asteroids extends Game
 {
+	private Random rand = new Random();
 	private Ship ship;
+	private int count = 0;
 	private ArrayList<Asteroid> asteroids =  new ArrayList<Asteroid>();
 	
 	public void init()
@@ -21,17 +26,24 @@ public class Asteroids extends Game
 		asteroids.add(new Asteroid(0,0));
 	}
 	
-	public void runTick()
+	private long timer1 = 0;
+	private long timer2 = 0;
+	private long difficulty = 4000;
+	
+	public void runTick(long time)
 	{
-		System.out.println(asteroids.size());
-		if(Keyboard.isKeyDown(Keyboard.KEY_2))
+		timer1 += time;
+		timer2 += time;
+		if(timer1 >= 4000)
 		{
-			asteroids.add(new Asteroid(400,300));
-			System.out.println("Asteroid Created!:" +asteroids.size());
+			asteroids.add(new Asteroid(rand.nextInt(Display.getWidth()),rand.nextInt(Display.getHeight())));
+			timer1 = 0;
+			difficulty--;
 		}
-		if(Keyboard.isKeyDown(Keyboard.KEY_SPACE))
+		if(Keyboard.isKeyDown(Keyboard.KEY_SPACE) && timer2 > 200)
 		{
 			objects.add(new Bullet(ship));
+			timer2 = 0;
 		}
 		
 		for(GameObject object : objects)
@@ -41,10 +53,18 @@ public class Asteroids extends Game
 					{
 						a.setUnload(true);
 						object.setUnload(true);
+						count++;
 					}
+		for(Asteroid a : asteroids)
+			if(Physics.collidesInBox1(a, ship, 8f))
+			{
+				a.setUnload(true);
+				Main.running = false;
+				uni.notify("Game over! You killed "+count+" asteroids!");
+			}
 		
-		ship.runTick();
-		super.runTick();
+		ship.runTick(time);
+		super.runTick(time);
 		Iterator<Asteroid> iterator = asteroids.iterator();
 		while(iterator.hasNext())
 		{
@@ -54,7 +74,7 @@ public class Asteroids extends Game
 				iterator.remove();
 				continue;
 			}
-			a.runTick();
+			a.runTick(time);
 		}
 	}
 	

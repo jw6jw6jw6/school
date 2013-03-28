@@ -2,10 +2,18 @@ package jw6jw6jw6.school.main;
 
 import jw6jw6jw6.school.asteroids.Asteroid;
 import jw6jw6jw6.school.asteroids.Bullet;
+import jw6jw6jw6.school.asteroids.Ship;
 
 public class Physics
 {
 	public static boolean collidesInBox(Asteroid a, Bullet b, float sideLength)
+	{
+		if(Math.abs(a.getX() - b.getX()) <= sideLength && Math.abs(a.getY() - b.getY()) <= sideLength)
+			return true;
+		return false;
+	}
+	
+	public static boolean collidesInBox1(Asteroid a, Ship b, float sideLength)
 	{
 		if(Math.abs(a.getX() - b.getX()) <= sideLength && Math.abs(a.getY() - b.getY()) <= sideLength)
 			return true;
