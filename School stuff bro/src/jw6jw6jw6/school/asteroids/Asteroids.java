@@ -34,11 +34,11 @@ public class Asteroids extends Game
 	{
 		timer1 += time;
 		timer2 += time;
-		if(timer1 >= 4000)
+		if(timer1 >= difficulty)
 		{
 			asteroids.add(new Asteroid(rand.nextInt(Display.getWidth()),rand.nextInt(Display.getHeight())));
 			timer1 = 0;
-			difficulty--;
+			difficulty-=10;
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_SPACE) && timer2 > 200)
 		{
