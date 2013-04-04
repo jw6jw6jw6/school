@@ -49,14 +49,14 @@ public class Asteroids extends Game
 		for(GameObject object : objects)
 			if(object instanceof Bullet)
 				for(Asteroid a : asteroids)
-					if(Physics.collidesInBox(a, (Bullet)object, 8f))
+					if(Physics.collidesInBox(a, (Bullet)object, 10f))
 					{
 						a.setUnload(true);
 						object.setUnload(true);
 						count++;
 					}
 		for(Asteroid a : asteroids)
-			if(Physics.collidesInBox1(a, ship, 8f))
+			if(Physics.collidesInBox1(a, ship, 10f))
 			{
 				a.setUnload(true);
 				Main.running = false;

@@ -6,10 +6,12 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import static org.lwjgl.opengl.GL11.*;
+import java.util.Random;
 
 public class Main
 {
 	private static Game game = new Asteroids();
+	private static Random rand = new Random();
 	public static boolean running = true;
 	private static long lastSystemTime = System.currentTimeMillis();
 	
@@ -22,6 +24,7 @@ public class Main
 		{
 			glClear(GL_COLOR_BUFFER_BIT);
 			glLoadIdentity();
+			stars();
 			
 			long currentTime = System.currentTimeMillis();
 			
@@ -59,7 +62,34 @@ public class Main
 		}
 		exit();
 	}
-
+	
+	private static void stars()
+	{
+		glPushMatrix();
+		{
+			glColor3f(1,1,1);
+			glTranslatef(0,0,0);
+			glBegin(GL_QUADS);
+			{
+//				glVertex3f(10,10,0);
+//				glVertex3f(12,10,0);
+//				glVertex3f(12,12,0);
+//				glVertex3f(10,12,0);
+				for(int x=0;x<9;x++)
+				{
+					int x1 = rand.nextInt(800);
+					int y = rand.nextInt(600);
+					glVertex3f(x1,y,0);
+					glVertex3f(x1+2,y,0);
+					glVertex3f(x1+2,y+2,0);
+					glVertex3f(x1,y+2,0);	
+				}
+			}
+			glEnd();
+		}
+		glPopMatrix();
+	}
+	
 	private static void initDisplay() 
 	{
 		try 
