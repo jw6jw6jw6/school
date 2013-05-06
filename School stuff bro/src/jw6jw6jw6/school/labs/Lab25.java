@@ -17,8 +17,9 @@ public class Lab25
 		{
 			if(le.length()>0)
 			{
-			le.toLowerCase();
+			le = le.toLowerCase();
 			tmp.addAll(Arrays.asList(le.split("[\\W]+")));
+			input+=le;
 			}
 		}
 		for(int x=0;x<tmp.size();x++)
@@ -40,20 +41,34 @@ public class Lab25
 				}
 			}
 		}
-//		words.remove('');
-		for(int x=0;x<tmp.size();x++)
-		{
-			String tmp1 = tmp.get(x);
-			char[] tmp2 = tmp1.toCharArray();
-			for(int q=0; q<tmp1.length(); q++)
+		Map<Character, Integer> sortedMap = sortByComparator(words);
+		String word2 = "";
+		Character[] list =sortedMap.keySet().toArray(new Character[1]);
+//		for(int x=0;x<tmp.size();x++)
+//		{
+//			char[] tmp2 = tmp.get(x).toCharArray();
+			char[] tmp2 = input.toCharArray();
+			for(int q=0; q< tmp2.length; q++)
 			{
+				for(int r=0; r<list.length; r++)
+				{
+					if(list[r] == tmp2[q])
+						if(r == list.length-1)
+							word2+=list[0];
+						else
+							word2+=list[r+1];
+				}
+				if(tmp2[q] == ' ')
+					word2+=' ';
 				
 			}
-		}
-		Map<String, Integer> sortedMap = sortByComparator(words);
+			
+//		}
 		long EndSystemTime = System.currentTimeMillis();
 		long time = EndSystemTime - StartSystemTime;
 		System.out.println(sortedMap);
+		System.out.println(word2);
+		System.out.println(input);
 		System.out.println(time/1000f +" seconds");
 //		System.out.println(words);
 //		System.out.println(words.size());
