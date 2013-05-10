@@ -13,15 +13,20 @@ public class Lab25
 	{
 		long StartSystemTime = System.currentTimeMillis();
 		input1();
+		System.out.println("AHH");
+		System.out.println(lines.size());
+		int count=0;
 		for(String le:lines)
 		{
 			if(le.length()>0)
 			{
+//				System.out.println(count++);
 			le = le.toLowerCase();
-			tmp.addAll(Arrays.asList(le.split("[\\W]+")));
-			input+=le;
+			tmp.addAll(Arrays.asList(le.split("[0-9\\W\\p{Punct}]+")));
+//			input+=le;
 			}
 		}
+		System.out.println("HELP!");
 		for(int x=0;x<tmp.size();x++)
 		{
 			String tmp1 = tmp.get(x);
@@ -41,13 +46,16 @@ public class Lab25
 				}
 			}
 		}
+		System.out.println("after char split");
 		Map<Character, Integer> sortedMap = sortByComparator(words);
+		ArrayList<String> Word2 = new ArrayList<String>();
 		String word2 = "";
 		Character[] list =sortedMap.keySet().toArray(new Character[1]);
-//		for(int x=0;x<tmp.size();x++)
-//		{
-//			char[] tmp2 = tmp.get(x).toCharArray();
-			char[] tmp2 = input.toCharArray();
+		System.out.println("After sort");
+		for(int x=0;x<lines.size();x++)
+		{
+			String tmp1 = lines.get(x);
+			char[] tmp2 = tmp1.toCharArray();
 			for(int q=0; q< tmp2.length; q++)
 			{
 				for(int r=0; r<list.length; r++)
@@ -60,14 +68,18 @@ public class Lab25
 				}
 				if(tmp2[q] == ' ')
 					word2+=' ';
-				
 			}
-			
-//		}
+			Word2.add(word2);
+			word2 = "";
+		}
+		System.out.println("After encrypt");
 		long EndSystemTime = System.currentTimeMillis();
 		long time = EndSystemTime - StartSystemTime;
 		System.out.println(sortedMap);
-		System.out.println(word2);
+		for(String le:Word2)
+		{
+			System.out.print(le);
+		}
 		System.out.println(input);
 		System.out.println(time/1000f +" seconds");
 //		System.out.println(words);
@@ -104,7 +116,7 @@ public class Lab25
  
 			String sCurrentLine;
  
-			br = new BufferedReader(new FileReader(new File("story.txt")));
+			br = new BufferedReader(new FileReader(new File("1342.txt")));
  
 			while ((sCurrentLine = br.readLine()) != null)
 			{
