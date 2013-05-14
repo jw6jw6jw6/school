@@ -23,8 +23,7 @@ public class Client
          System.out.println(in.readUTF());
          System.out.println("Enter user");
          out.writeUTF(input.nextLine());
-         System.out.println("Enter PIN");
-         out.writeUTF(input.nextLine());
+         System.out.println(in.readUTF());
          System.out.println(in.readUTF());
          client.close();
       }catch(IOException e)
